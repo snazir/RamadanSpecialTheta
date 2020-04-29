@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    tools:context=".LoginActivity">
+
+
+    <TextView
+        android:id="@+id/mainText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="Enter your email and password"
+        android:textColor="#101d30"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/userNameEditText"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mainText"
+        android:layout_marginTop="65dp"
+        android:hint="Username / Email" />
+
+    <TextView
+        android:id="@+id/forgotPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userNameEditText"
+        android:layout_alignParentEnd="true"
+        android:text="Forgot Password?"
+        android:textColor="#0073e6" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_below="@+id/forgotPasswordText"
+        android:layout_marginTop="8dp"
+        android:hint="Password" />
+
+
+    <Button
+        android:id="@+id/signInButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordEditText"
+        android:layout_marginTop="24dp"
+        android:background="#0073e6"
+        android:text="Sign In"
+        android:textColor="#fff" />
+
+
+    <LinearLayout
+        android:id="@+id/OrLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signInButton"
+        android:layout_marginTop="36dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#ebecf0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OR" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#ebecf0" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/office365Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/OrLayout"
+        android:background="#eb3c00"
+        android:text="Sign in with Office365"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/googleButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/office365Button"
+        android:layout_marginTop="8dp"
+        android:background="#4285f4"
+        android:drawablePadding="4dp"
+        android:text="Sign in with Google"
+        android:textColor="#fff" />
+
+</RelativeLayout>
