@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:layout_margin="@dimen/activity_horizontal_margin"
     tools:context=".LoginActivity">
 
 
@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="2"
-        android:text="Enter your email and password"
-        android:textColor="#101d30"
+        android:text="@string/login_screen_main_text"
+        android:textColor="@color/textColourDark"
         android:textSize="32sp"
         android:textStyle="bold" />
 
@@ -26,7 +26,7 @@
         android:layout_below="@+id/mainText"
         android:text="test@test.com"
         android:layout_marginTop="65dp"
-        android:hint="Username / Email" />
+        android:hint="@string/username_hint_text" />
 
     <TextView
         android:id="@+id/forgotPasswordText"
@@ -35,7 +35,7 @@
         android:layout_below="@+id/userNameEditText"
         android:layout_alignParentEnd="true"
         android:text="Forgot Password?"
-        android:textColor="#0073e6" />
+        android:textColor="@color/textColorBlue" />
 
     <EditText
         android:id="@+id/passwordEditText"

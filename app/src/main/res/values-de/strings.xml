@@ -1,0 +1,14 @@
+<resources>
+<string name="app_name">Ramadan</string>
+<string name="title_activity_home">Home</string>
+<string name="tab_text_1">Tab 1</string>
+<string name="tab_text_2">Tab 2</string>
+
+
+<string name="login_screen_main_text">Geben Sie Ihre E-Mail-Adresse und Ihr Passwort ein</string>
+<string name="username_hint_text">Benutzername / E-Mail</string>
+<string name="logout_confirmation_title">Logout Confirmation </string>
+<string name="logout_confirmation_message">Are you sure you want to logout?</string>
+<string name="logout_confirmation_positive_Button">YES</string>
+<string name="logout_confirmation_Negative_Button">NO</string>
+</resources>

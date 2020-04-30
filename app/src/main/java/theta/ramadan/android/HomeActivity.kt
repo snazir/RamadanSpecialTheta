@@ -3,7 +3,8 @@ package theta.ramadan.android
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -28,20 +29,52 @@ class HomeActivity : AppCompatActivity() {
         val fab: FloatingActionButton = findViewById(R.id.fab)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Logout Successfully", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
 
-            // On Logout, Move to Login Activity
+            showSnackBar(view, "Logout Successfully")
+            showLogoutConfirmationDialog()
 
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            this.finish()
-            startActivity(intent)
         }
 
 
         // Toast.makeText(this, "OnCreate", Toast.LENGTH_LONG).show()
         Log.d("HomeActivity", "OnCreate")
+    }
+
+    private fun showSnackBar(view: View, message: String) {
+        Snackbar.make(view, message, Snackbar.LENGTH_LONG)
+            .setAction("Action", null).show()
+    }
+
+    private fun showLogoutConfirmationDialog() {
+        // On Logout, Move to Login Activity
+        val builder = AlertDialog.Builder(this@HomeActivity)
+
+        builder.setTitle(resources.getString(R.string.logout_confirmation_title))
+        builder.setMessage(resources.getString(R.string.logout_confirmation_message))
+        builder.setPositiveButton(resources.getString(R.string.logout_confirmation_positive_Button)) { dialog, which ->
+            dialog.dismiss()
+            logoutUser()
+
+        }
+        builder.setNegativeButton(resources.getString(R.string.logout_confirmation_Negative_Button)) { dialog, which ->
+            dialog.dismiss()
+        }
+
+        //       builder.setView(R.layout.activity_login)
+
+        builder.setNeutralButton("CANCEL") { dialog, which -> }
+
+        // Neutral button
+
+        val logoutDialog: AlertDialog = builder.create()
+        logoutDialog.show()
+    }
+
+    private fun logoutUser() {
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        this.finish()
+        startActivity(intent)
     }
 
     override fun onStart() {
@@ -73,8 +106,8 @@ class HomeActivity : AppCompatActivity() {
         // partially out of screen
         // No more interaction
 
-    //    if(someVoiceMessage.isPlaying())
-                    // voiceMessage.pause()
+        //    if(someVoiceMessage.isPlaying())
+        // voiceMessage.pause()
         //OR
         //song.keepPlaying()
     }
