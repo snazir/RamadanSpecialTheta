@@ -18,14 +18,22 @@
         android:textSize="32sp"
         android:textStyle="bold" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:id="@+id/company_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/mainText"/>
+
     <EditText
         android:id="@+id/userNameEditText"
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mainText"
+        android:layout_below="@+id/company_logo"
         android:text="test@test.com"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="30dp"
         android:hint="@string/username_hint_text" />
 
     <TextView

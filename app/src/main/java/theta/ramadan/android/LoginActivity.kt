@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -44,7 +45,15 @@ class LoginActivity : AppCompatActivity() {
             moveToForgotPasswordActivity()
         }
 
+        loadLogoFromInternet()
 
+    }
+
+    private fun loadLogoFromInternet() {
+        Picasso.with(this)
+            .load("https://media-exp1.licdn.com/dms/image/C4D0BAQESOZlBHeuyEw/company-logo_200_200/0?e=2159024400&v=beta&t=AFpaVFRyGyqQY94LLeqXjHmDdxY72OSCokWJIocOeVE")
+            .placeholder(R.mipmap.ic_launcher)
+            .into(company_logo)
     }
 
     private fun moveToForgotPasswordActivity() {
