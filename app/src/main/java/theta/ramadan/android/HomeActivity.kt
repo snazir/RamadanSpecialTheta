@@ -6,10 +6,9 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_home.*
 import theta.ramadan.android.ui.main.SectionsPagerAdapter
 
 class HomeActivity : AppCompatActivity() {
@@ -22,11 +21,8 @@ class HomeActivity : AppCompatActivity() {
 
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
-
+        view_pager.adapter = sectionsPagerAdapter
+        tabs.setupWithViewPager(view_pager)
 
 
         val fab: FloatingActionButton = findViewById(R.id.fab)

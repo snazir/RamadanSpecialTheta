@@ -14,6 +14,9 @@ class LoginActivity : AppCompatActivity() {
 
 
         setContentView(R.layout.activity_login)
+
+
+//        loadLoginFragment()
         signInButton.setOnClickListener {
 
             if (checkUserNameValidity(userNameEditText.text.toString())) {
