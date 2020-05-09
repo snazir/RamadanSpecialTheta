@@ -37,6 +37,7 @@ class HomeActivity : AppCompatActivity() {
         Log.d("HomeActivity", "OnCreate")
     }
 
+
     private fun showSnackBar(view: View, message: String) {
         Snackbar.make(view, message, Snackbar.LENGTH_LONG)
             .setAction("Action", null).show()
