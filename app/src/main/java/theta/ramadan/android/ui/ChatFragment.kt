@@ -4,16 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_chat.view.*
 import theta.ramadan.adapter.ChatAdapter
 import theta.ramadan.android.R
+import theta.ramadan.interfaces.OnChatItemClickListener
 
 /**
  * A simple [Fragment] subclass.
  */
-class ChatFragment : Fragment() {
+class ChatFragment : Fragment(), OnChatItemClickListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +31,7 @@ class ChatFragment : Fragment() {
 
 
         view.chatProgressBar.visibility = View.VISIBLE
-        val chatAdapter = ChatAdapter(activity?.applicationContext!!)
+        val chatAdapter = ChatAdapter(activity?.applicationContext!!, this)
         chatAdapter.addChatList(getChatMessagesLocally())
 
         view.chatRecyclerView.layoutManager = LinearLayoutManager(activity)
@@ -119,5 +121,10 @@ class ChatFragment : Fragment() {
 
 
     data class ChatMessage(var sender: String, var date: String, var message: String)
+
+    override fun onItemClick(chat: ChatMessage) {
+        Toast.makeText(activity, chat.sender, Toast.LENGTH_LONG).show()
+
+    }
 
 }
