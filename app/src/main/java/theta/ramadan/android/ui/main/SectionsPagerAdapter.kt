@@ -27,7 +27,6 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
         // Return a PlaceholderFragment (defined as a static inner class below).
         var fragment: Fragment = HomeFragment()
 
-
         when (position) {
 
             0 -> {

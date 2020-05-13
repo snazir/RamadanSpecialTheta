@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_home.*
+import theta.ramadan.android.network.ThetaApiInterface
 import theta.ramadan.android.ui.main.SectionsPagerAdapter
 
 class HomeActivity : AppCompatActivity() {
@@ -69,6 +70,13 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun logoutUser() {
+
+        ThetaApiInterface.getRetrofitInstance()?.userLogout()
+
+
+
+
+
         val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
         this.finish()
@@ -120,6 +128,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Log.d("HomeActivity", "onDestroy")
+
 
     }
 }
