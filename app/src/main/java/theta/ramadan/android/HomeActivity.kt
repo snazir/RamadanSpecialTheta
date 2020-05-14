@@ -71,11 +71,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun logoutUser() {
 
-        ThetaApiInterface.getRetrofitInstance()?.userLogout()
-
-
-
-
+      //  ThetaApiInterface.getRetrofitInstance()?.userLogout()
 
         val intent = Intent(this, LoginActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP

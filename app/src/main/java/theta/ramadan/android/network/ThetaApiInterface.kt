@@ -4,28 +4,27 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.POST
-import theta.ramadan.android.ui.ChatFragment
+import theta.ramadan.responses.UserResponse
 
 interface ThetaApiInterface {
 
 
-    @GET("all")
-    fun getAllCountries(): Call<List<ChatFragment.ChatMessage>>
+    @GET("users?page=2")
+    fun getAllUsers(): Call<UserResponse>
 
-    @POST("login")
-    fun loginUser(): Call<ChatFragment.ChatMessage>
-
-    @POST("signup")
-    fun userSignUp(): Call<ChatFragment.ChatMessage>
-
-
-    @POST("logout")
-    fun userLogout(): Call<ChatFragment.ChatMessage>
+//    @POST("login")
+//    fun loginUser(): Call<ChatFragment.ChatMessage>
+//
+//    @POST("signup")
+//    fun userSignUp(): Call<ChatFragment.ChatMessage>
+//
+//
+//    @POST("logout")
+//    fun userLogout(): Call<ChatFragment.ChatMessage>
 
     companion object {
         private var retrofit: Retrofit? = null
-        private const val BASE_URL = "https://restcountries.eu/rest/v2/"
+        private const val BASE_URL = "https://reqres.in/api/"
 
 
         fun getRetrofitInstance(): ThetaApiInterface? {

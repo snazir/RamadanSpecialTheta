@@ -17,6 +17,7 @@ class ChatAdapter(val context: Context, private val clickListener: OnChatItemCli
 
     fun addChatList(chatListFromFragment: ArrayList<ChatFragment.ChatMessage>) {
         chatList = chatListFromFragment
+        notifyDataSetChanged()
     }
 
 

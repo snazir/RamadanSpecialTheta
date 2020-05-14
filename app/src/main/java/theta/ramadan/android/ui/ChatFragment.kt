@@ -8,9 +8,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_chat.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import theta.ramadan.adapter.ChatAdapter
 import theta.ramadan.android.R
+import theta.ramadan.android.network.ThetaApiInterface
 import theta.ramadan.interfaces.OnChatItemClickListener
+import theta.ramadan.responses.UserResponse
 
 /**
  * A simple [Fragment] subclass.
@@ -32,13 +37,45 @@ class ChatFragment : Fragment(), OnChatItemClickListener {
 
         view.chatProgressBar.visibility = View.VISIBLE
         val chatAdapter = ChatAdapter(activity?.applicationContext!!, this)
-        chatAdapter.addChatList(getChatMessagesLocally())
+//        chatAdapter.addChatList(getChatMessagesLocally())
 
         view.chatRecyclerView.layoutManager = LinearLayoutManager(activity)
         view.chatRecyclerView.adapter = chatAdapter
-        view.chatProgressBar.visibility = View.GONE
+//        view.chatProgressBar.visibility = View.GONE
+
+        getUsersFromServer()
 
 
+    }
+
+    private fun getUsersFromServer() {
+
+//        val apiInterface = ThetaApiInterface.getRetrofitInstance()
+//        val call = apiInterface?.getAllUsers()
+
+
+        ThetaApiInterface.getRetrofitInstance()?.getAllUsers()
+            ?.enqueue(object : Callback<UserResponse> {
+                override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                 // Toast    t.localizedMessage
+
+                }
+
+                override fun onResponse(
+                    call: Call<UserResponse>,
+                    response: Response<UserResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val userResponse = response.body() as UserResponse
+                        userResponse.userList
+
+                        // pass this list to the adapter
+                        // hide progress
+                    }
+                }
+
+
+            })
     }
 
 
