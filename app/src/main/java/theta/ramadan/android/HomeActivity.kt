@@ -1,6 +1,7 @@
 package theta.ramadan.android
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_home.*
-import theta.ramadan.android.network.ThetaApiInterface
 import theta.ramadan.android.ui.main.SectionsPagerAdapter
 
 class HomeActivity : AppCompatActivity() {
@@ -71,9 +71,13 @@ class HomeActivity : AppCompatActivity() {
 
     private fun logoutUser() {
 
-      //  ThetaApiInterface.getRetrofitInstance()?.userLogout()
+        //  ThetaApiInterface.getRetrofitInstance()?.userLogout()
+        val sharedPreferences: SharedPreferences =
+            this.getSharedPreferences("theta", MODE_PRIVATE)
 
-        val intent = Intent(this, LoginActivity::class.java)
+        sharedPreferences.edit().remove("USER_EMAIL").apply()
+
+        val intent = Intent(this, SplashActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
         this.finish()
         startActivity(intent)

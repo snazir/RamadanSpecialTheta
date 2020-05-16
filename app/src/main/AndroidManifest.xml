@@ -12,23 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".KotlinActivity">
-
-        </activity>
-        <activity
-            android:name=".ui.ExpkicitIntentActivity"
-            android:label="@string/title_activity_expkicit_intent"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity android:name=".LoginActivity">
-
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".KotlinActivity" />
+        <activity
+            android:name=".ui.ExpkicitIntentActivity"
+            android:label="@string/title_activity_expkicit_intent"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity
             android:name=".HomeActivity"

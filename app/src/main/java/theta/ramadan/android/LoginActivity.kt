@@ -1,6 +1,7 @@
 package theta.ramadan.android
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
@@ -23,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
                 // showMessageWithUserName()
                 // Password Validation
                 Toast.makeText(this, "Login Successfully", Toast.LENGTH_LONG).show()
+                saveLoginInformationToSharedPreference(userNameEditText.text.toString())
                 moveToHomeActivity()
 
             } else {
@@ -50,6 +52,11 @@ class LoginActivity : AppCompatActivity() {
 
         loadLogoFromInternet()
 
+    }
+
+    private fun saveLoginInformationToSharedPreference(userEmail: String) {
+        val sharedPreferences: SharedPreferences = this.getSharedPreferences("theta", MODE_PRIVATE)
+        sharedPreferences.edit().putString("USER_EMAIL", userEmail).apply()
     }
 
     private fun loadLogoFromInternet() {

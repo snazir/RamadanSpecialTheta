@@ -15,6 +15,7 @@ import theta.ramadan.adapter.ChatAdapter
 import theta.ramadan.android.R
 import theta.ramadan.android.network.ThetaApiInterface
 import theta.ramadan.interfaces.OnChatItemClickListener
+import theta.ramadan.responses.User
 import theta.ramadan.responses.UserResponse
 
 /**
@@ -31,12 +32,14 @@ class ChatFragment : Fragment(), OnChatItemClickListener {
 
     }
 
+    private lateinit var chatAdapter: ChatAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
         view.chatProgressBar.visibility = View.VISIBLE
-        val chatAdapter = ChatAdapter(activity?.applicationContext!!, this)
+        chatAdapter = ChatAdapter(activity?.applicationContext!!, this)
 //        chatAdapter.addChatList(getChatMessagesLocally())
 
         view.chatRecyclerView.layoutManager = LinearLayoutManager(activity)
@@ -57,7 +60,7 @@ class ChatFragment : Fragment(), OnChatItemClickListener {
         ThetaApiInterface.getRetrofitInstance()?.getAllUsers()
             ?.enqueue(object : Callback<UserResponse> {
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                 // Toast    t.localizedMessage
+                    // Toast    t.localizedMessage
 
                 }
 
@@ -67,7 +70,7 @@ class ChatFragment : Fragment(), OnChatItemClickListener {
                 ) {
                     if (response.isSuccessful) {
                         val userResponse = response.body() as UserResponse
-                        userResponse.userList
+                 //       updateAdapter(userResponse.userList)
 
                         // pass this list to the adapter
                         // hide progress
@@ -77,6 +80,11 @@ class ChatFragment : Fragment(), OnChatItemClickListener {
 
             })
     }
+
+//    private fun updateAdapter(userList: ArrayList<User>) {
+//        chatAdapter.addChatList()
+//
+//    }
 
 
     private fun getChatMessagesLocally(): ArrayList<ChatMessage> {
