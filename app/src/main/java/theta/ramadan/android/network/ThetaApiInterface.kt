@@ -4,17 +4,26 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 import theta.ramadan.responses.UserResponse
 
 interface ThetaApiInterface {
 
 
-    @GET("users?page=2")
-    fun getAllUsers(): Call<UserResponse>
+    @GET("users")
+    fun getAllUsers(@Path("page") pageNumber: Int): Call<UserResponse>
 
-//    @POST("login")
-//    fun loginUser(): Call<ChatFragment.ChatMessage>
-//
+//    https://reqres.in/api/users?page=2
+
+
+    @POST("login")
+    fun loginUser(@Path("userEmail") email: String, @Path("password") password: String): Call<UserResponse>
+
+    // https://reqres.in/api/login
+
+
 //    @POST("signup")
 //    fun userSignUp(): Call<ChatFragment.ChatMessage>
 //

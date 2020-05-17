@@ -8,6 +8,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_login.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import theta.ramadan.android.network.ThetaApiInterface
+import theta.ramadan.responses.UserResponse
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,8 +28,8 @@ class LoginActivity : AppCompatActivity() {
             if (checkUserNameValidity(userNameEditText.text.toString())) {
                 // showMessageWithUserName()
                 // Password Validation
+                callLoginUserApi(userNameEditText.text.toString(), passwordEditText.text.toString())
                 Toast.makeText(this, "Login Successfully", Toast.LENGTH_LONG).show()
-                saveLoginInformationToSharedPreference(userNameEditText.text.toString())
                 moveToHomeActivity()
 
             } else {
@@ -51,6 +56,34 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loadLogoFromInternet()
+
+    }
+
+    private fun callLoginUserApi(email: String, password: String) {
+
+        ThetaApiInterface.getRetrofitInstance()?.loginUser(email, password)
+            ?.enqueue(object : Callback<UserResponse> {
+                override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                    // Toast    t.localizedMessage
+
+                }
+
+                override fun onResponse(
+                    call: Call<UserResponse>,
+                    response: Response<UserResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val userResponse = response.body() as UserResponse
+                        saveLoginInformationToSharedPreference(userNameEditText.text.toString())
+
+
+                        // pass this list to the adapter
+                        // hide progress
+                    }
+                }
+
+
+            })
 
     }
 

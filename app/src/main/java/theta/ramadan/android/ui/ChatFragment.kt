@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import kotlinx.android.synthetic.main.fragment_chat.*
 import kotlinx.android.synthetic.main.fragment_chat.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,13 +17,12 @@ import theta.ramadan.adapter.ChatAdapter
 import theta.ramadan.android.R
 import theta.ramadan.android.network.ThetaApiInterface
 import theta.ramadan.interfaces.OnChatItemClickListener
-import theta.ramadan.responses.User
 import theta.ramadan.responses.UserResponse
 
 /**
  * A simple [Fragment] subclass.
  */
-class ChatFragment : Fragment(), OnChatItemClickListener {
+class ChatFragment : Fragment(), OnChatItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +47,9 @@ class ChatFragment : Fragment(), OnChatItemClickListener {
         view.chatRecyclerView.adapter = chatAdapter
 //        view.chatProgressBar.visibility = View.GONE
 
-        getUsersFromServer()
+        onRefresh()
+
+        //   getUsersFromServer()
 
 
     }
@@ -57,7 +60,7 @@ class ChatFragment : Fragment(), OnChatItemClickListener {
 //        val call = apiInterface?.getAllUsers()
 
 
-        ThetaApiInterface.getRetrofitInstance()?.getAllUsers()
+        ThetaApiInterface.getRetrofitInstance()?.getAllUsers(3)
             ?.enqueue(object : Callback<UserResponse> {
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                     // Toast    t.localizedMessage
@@ -70,7 +73,7 @@ class ChatFragment : Fragment(), OnChatItemClickListener {
                 ) {
                     if (response.isSuccessful) {
                         val userResponse = response.body() as UserResponse
-                 //       updateAdapter(userResponse.userList)
+                        //       updateAdapter(userResponse.userList)
 
                         // pass this list to the adapter
                         // hide progress
@@ -82,7 +85,7 @@ class ChatFragment : Fragment(), OnChatItemClickListener {
     }
 
 //    private fun updateAdapter(userList: ArrayList<User>) {
-//        chatAdapter.addChatList()
+//        chatAdapter.addChatList(userList)
 //
 //    }
 
@@ -169,6 +172,12 @@ class ChatFragment : Fragment(), OnChatItemClickListener {
 
     override fun onItemClick(chat: ChatMessage) {
         Toast.makeText(activity, chat.sender, Toast.LENGTH_LONG).show()
+
+    }
+
+    override fun onRefresh() {
+        chatAdapter.addChatList(getChatMessagesLocally())
+        pullToRefresh.isRefreshing = false
 
     }
 
