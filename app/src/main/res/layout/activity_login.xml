@@ -90,12 +90,18 @@
             android:background="#ebecf0" />
     </LinearLayout>
 
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/OrLayout"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
 
     <Button
         android:id="@+id/office365Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/OrLayout"
+        android:layout_below="@+id/login_button"
         android:background="#eb3c00"
         android:text="Sign in with Office365"
         android:textColor="#fff" />

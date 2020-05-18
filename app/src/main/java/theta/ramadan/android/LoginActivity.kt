@@ -4,8 +4,14 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.FacebookSdk
+import com.facebook.login.LoginResult
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
@@ -14,12 +20,41 @@ import retrofit2.Response
 import theta.ramadan.android.network.ThetaApiInterface
 import theta.ramadan.responses.UserResponse
 
+
 class LoginActivity : AppCompatActivity() {
+
+
+    lateinit var callbackManager: CallbackManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        FacebookSdk.sdkInitialize(this)
+//        AppEventsLogger.activateApp(this)
 
         setContentView(R.layout.activity_login)
+        callbackManager = CallbackManager.Factory.create();
+
+        val EMAIL = "email"
+
+        login_button.setReadPermissions(listOf(EMAIL))
+        // If you are using in a fragment, call loginButton.setFragment(this)
+
+        // Callback registration
+        // If you are using in a fragment, call loginButton.setFragment(this)
+        // Callback registration
+        login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult?> {
+            override fun onSuccess(loginResult: LoginResult?) { // App code
+                val token = loginResult?.accessToken?.token
+            }
+
+            override fun onCancel() { // App code
+                Log.d("Facebook", "Cancel")
+            }
+
+            override fun onError(exception: FacebookException) { // App code
+
+            }
+        })
 
 
 //        loadLoginFragment()
@@ -57,6 +92,15 @@ class LoginActivity : AppCompatActivity() {
 
         loadLogoFromInternet()
 
+    }
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun callLoginUserApi(email: String, password: String) {

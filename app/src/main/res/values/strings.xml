@@ -6,6 +6,9 @@
     <string name="tab_text_3">Chats</string>
     <string name="tab_text_4">Calls</string>
 
+    <string name="facebook_app_id">242911323716834</string>
+    <string name="fb_login_protocol_scheme">fb242911323716834</string>
+
 
     <string name="login_screen_main_text">Enter your email and password</string>
     <string name="username_hint_text">Username / Email</string>
