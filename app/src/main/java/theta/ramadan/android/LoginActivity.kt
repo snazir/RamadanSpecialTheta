@@ -63,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
             if (checkUserNameValidity(userNameEditText.text.toString())) {
                 // showMessageWithUserName()
                 // Password Validation
-                callLoginUserApi(userNameEditText.text.toString(), passwordEditText.text.toString())
+         //       callLoginUserApi(userNameEditText.text.toString(), passwordEditText.text.toString())
                 Toast.makeText(this, "Login Successfully", Toast.LENGTH_LONG).show()
                 moveToHomeActivity()
 

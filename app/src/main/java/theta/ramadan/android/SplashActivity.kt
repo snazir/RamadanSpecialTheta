@@ -13,16 +13,23 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            val sharedPreferences: SharedPreferences =
-                this.getSharedPreferences("theta", MODE_PRIVATE)
-            if (sharedPreferences.contains("USER_EMAIL")) {
-                moveToHomeActivity()
-            } else {
-                gotToLoginActivity()
-
-            }
+//            val sharedPreferences: SharedPreferences =
+//                this.getSharedPreferences("theta", MODE_PRIVATE)
+//            if (sharedPreferences.contains("USER_EMAIL")) {
+//                moveToHomeActivity()
+//            } else {
+//                gotToLoginActivity()
+//
+//            }
+            goToRoomActivity()
 
         }, 3000)
+    }
+
+    private fun goToRoomActivity() {
+        val intent = Intent(this, RoomActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun gotToLoginActivity() {
