@@ -1,7 +1,8 @@
 package theta.ramadan.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
-import theta.ramadan.models.Employee
+import theta.ramadan.database.entity.Employee
 
 @Dao
 abstract class EmployeeDao {
@@ -20,7 +21,7 @@ abstract class EmployeeDao {
     abstract fun updateEmployee(employee: Employee)
 
     @Query("Select * From employee")
-    abstract fun provideAllEmployees(): List<Employee>
+    abstract fun provideAllEmployees(): LiveData<List<Employee>>
 
     @Query("Select * From employee WHERE employee_id = :id ")
     abstract fun provideEmployeeById(id: Int): Employee

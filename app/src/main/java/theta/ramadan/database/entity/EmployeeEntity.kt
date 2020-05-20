@@ -3,18 +3,26 @@ package theta.ramadan.database.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 
 @Entity(tableName = "Employee")
-data class EmployeeEntity(
+data class Employee(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "employee_id")
-    val id: Int,
+    var id: Int = 0,
 
     @ColumnInfo(name = "employee_name")
-    val name: String,
+    var name: String,
 
     @ColumnInfo(name = "employee_phone")
-    val phone: String
-)
+    var phone: String
+) : Serializable
+//{
+//
+//
+//   fun toEmployee() {
+//       Employee(id, name, phone)
+//   }
+//}
